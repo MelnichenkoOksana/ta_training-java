@@ -7,8 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GoogleCloudStartPage;
 
-public class HurtMePlenty {
-
+public class GoogleCloudStartPageTest {
     public WebDriver driver = new ChromeDriver();
     public String startPageURL = "https://cloud.google.com/";
 
@@ -33,4 +32,3 @@ public class HurtMePlenty {
     }
 
 }
-

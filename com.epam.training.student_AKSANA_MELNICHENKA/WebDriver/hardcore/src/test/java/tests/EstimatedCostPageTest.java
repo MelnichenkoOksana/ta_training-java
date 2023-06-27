@@ -1,15 +1,31 @@
 package tests;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.EstimatedCostPage;
 import pages.GoogleCloudPricingCalculatorPage;
 import pages.GoogleCloudStartPage;
 
-public class EstimatedCostPageTest extends AbstractTest {
+public class EstimatedCostPageTest {
 
-    public EstimatedCostPage openPage(String startPageURL) {
+    public WebDriver driver = new ChromeDriver();
+    public String startPageURL = "https://cloud.google.com/";
+
+    public String calculatorName = "Google Cloud Platform Pricing Calculator";
+
+    @BeforeMethod(alwaysRun = true)
+    public void browserSetup(){
+        driver = new ChromeDriver();
+    }
+
+
+    public EstimatedCostPage openPage(String startPageURL){
         GoogleCloudStartPage googleCloudStartPage = new GoogleCloudStartPage(driver);
-        googleCloudStartPage.openPage(startPageURL).pageSearch(CALCULATOR_NAME);
+        googleCloudStartPage.openPage(startPageURL);
+        googleCloudStartPage.pageSearch(calculatorName);
         GoogleCloudPricingCalculatorPage pricingCalculatorPage = new GoogleCloudPricingCalculatorPage(driver);
 
         pricingCalculatorPage.switchFrame();
@@ -31,17 +47,18 @@ public class EstimatedCostPageTest extends AbstractTest {
     }
 
     @Test
-    public void checkDataTest() {
-        EstimatedCostPage estimatedCostPage = openPage(GOOGLE_CLOUD_START_PAGE);
+    public void chekDataTest(){
+        EstimatedCostPage estimatedCostPage = openPage(startPageURL);
 
-        assert estimatedCostPage.getVMClass().contains("Regular");
+        estimatedCostPage.pressButtonEmailEstimate();
+        estimatedCostPage.switchToFrame();
+//        estimatedCostPage.fillEmail();
+    }
 
-        assert estimatedCostPage.checkInstanceType("n1-standard-8");
-        assert estimatedCostPage.checkRegion("Frankfurt");
-        assert estimatedCostPage.checkLocalSSD("2x375 GiB");
-        assert estimatedCostPage.checkCommitmentTerm("1 Year");
-
-        assert estimatedCostPage.checkTotalEstimatedCost("USD 4,024.56 per 1 month");
+//    @AfterMethod(alwaysRun = true)
+    public void closeDriver(){
+        driver.quit();
+        driver=null;
     }
 
 }

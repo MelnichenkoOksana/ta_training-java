@@ -6,13 +6,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.PastebinStartPage;
 
-public class ICanWin {
+public class ICanWinTest {
     public WebDriver driver = new ChromeDriver();
     public String newPasteText = "Hello from WebDriver";
     public String newTitleText = "helloweb";
 
     @Test
-    public void pastebinTest(){
+    public void pastebinTest() {
+
         PastebinStartPage pastebinStartPage = new PastebinStartPage(driver);
         pastebinStartPage.openPage();
         pastebinStartPage.fillingNewPasteField(newPasteText);
@@ -22,7 +23,7 @@ public class ICanWin {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void closeDriver(){
+    public void closeDriver() {
         driver.quit();
     }
 }
