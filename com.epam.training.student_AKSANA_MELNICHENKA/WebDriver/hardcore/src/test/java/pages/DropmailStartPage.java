@@ -1,28 +1,20 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class DropmailStartPage {
-
-    public WebDriver driver;
+public class DropmailStartPage extends AbstractPage {
 
     public DropmailStartPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public DropmailStartPage openPage(String startPageURL){
-
-        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
-        driver.findElement(By.linkText(startPageURL)).sendKeys(selectLinkOpeninNewTab);
-//        driver.get(startPageURL);
-//        new WebDriverWait(driver, Duration.ofSeconds(10))
-//                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("container")));
+    public DropmailStartPage openPage(String startPageURL) {
+        driver.get(startPageURL);
         return this;
     }
 

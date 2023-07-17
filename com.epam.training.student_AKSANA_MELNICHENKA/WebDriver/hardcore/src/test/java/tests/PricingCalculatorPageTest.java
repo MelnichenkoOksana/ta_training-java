@@ -1,40 +1,27 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GoogleCloudPricingCalculatorPage;
 import pages.GoogleCloudStartPage;
 
-public class PricingCalculatorPageTest {
-    public WebDriver driver = new ChromeDriver();
-    public String startPageURL = "https://cloud.google.com/";
+public class PricingCalculatorPageTest extends AbstractTest {
 
-    public String calculatorName = "Google Cloud Platform Pricing Calculator";
-
-    @BeforeMethod(alwaysRun = true)
-    public void browserSetup(){
-        driver = new ChromeDriver();
-    }
-
-    public GoogleCloudPricingCalculatorPage createPage(){
+    public GoogleCloudPricingCalculatorPage createPage() {
         GoogleCloudStartPage googleCloudStartPage = new GoogleCloudStartPage(driver);
-        googleCloudStartPage.openPage(startPageURL);
-        googleCloudStartPage.pageSearch(calculatorName);
+        googleCloudStartPage.openPage(GOOGLE_CLOUD_START_PAGE);
+        googleCloudStartPage.pageSearch(CALCULATOR_NAME);
         return new GoogleCloudPricingCalculatorPage(driver);
     }
 
     @Test
-    public void activateSectionTest(){
+    public void activateSectionTest() {
         GoogleCloudPricingCalculatorPage pricingCalculatorPage = createPage();
         pricingCalculatorPage.switchFrame();
         pricingCalculatorPage.activateSection();
     }
 
     @Test
-    public void fillFormTest(){
+    public void fillFormTest() {
         GoogleCloudPricingCalculatorPage pricingCalculatorPage = createPage();
         pricingCalculatorPage.switchFrame();
         pricingCalculatorPage.fillFieldNumberInstances();
@@ -50,12 +37,6 @@ public class PricingCalculatorPageTest {
         pricingCalculatorPage.fillCommitUsage();
 
         pricingCalculatorPage.createEstimate();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void closeDriver(){
-        driver.quit();
-        driver=null;
     }
 
 }
