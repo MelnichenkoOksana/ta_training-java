@@ -1,6 +1,7 @@
 package tests;
 
 import org.testng.annotations.Test;
+import pages.DropmailStartPage;
 import pages.EstimatedCostPage;
 import pages.GoogleCloudPricingCalculatorPage;
 import pages.GoogleCloudStartPage;
@@ -35,7 +36,21 @@ public class EstimatedCostPageTest extends AbstractTest {
     public void chekDataTest() {
         EstimatedCostPage estimatedCostPage = openPage(GOOGLE_CLOUD_START_PAGE);
         estimatedCostPage.pressButtonEmailEstimate();
-        estimatedCostPage.fillEmail();
+        createNewTab();
+        switchToTab(1);
+        DropmailStartPage dropmailStartPage = new DropmailStartPage(driver);
+        dropmailStartPage.openPage(DROPMAIL_START_PAGE);
+        String emailName = dropmailStartPage.getEmailName();
+        switchToTab(0);
+        estimatedCostPage.switchFrame();
+        estimatedCostPage.fillFieldEmail(emailName);
+        estimatedCostPage.pressButtonSendEmail();
+        switchToTab(1);
+        dropmailStartPage.pressHTMLButton();
+        dropmailStartPage.switchFrame();
+
+        assert dropmailStartPage.checkTotalEstimatedCost("USD 4,024.56");
+
     }
 
 }
