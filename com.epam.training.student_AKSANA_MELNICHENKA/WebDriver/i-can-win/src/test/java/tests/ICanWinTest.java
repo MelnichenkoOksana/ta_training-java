@@ -1,13 +1,10 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.PastebinStartPage;
 
-public class ICanWinTest {
-    public WebDriver driver = new ChromeDriver();
+public class ICanWinTest extends AbstractTest {
+
     public String newPasteText = "Hello from WebDriver";
     public String newTitleText = "helloweb";
 
@@ -20,10 +17,5 @@ public class ICanWinTest {
         pastebinStartPage.fillingPasteExpirationField();
         pastebinStartPage.fillingTitleField(newTitleText);
         pastebinStartPage.clickButtonCreateNewPaste();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void closeDriver() {
-        driver.quit();
     }
 }

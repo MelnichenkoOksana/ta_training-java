@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 
 public class EstimatedCostPage extends AbstractPage {
 
-    public String startPageURL = "https://dropmail.me/ru/";
-
     public EstimatedCostPage(WebDriver driver) {
         super(driver);
     }

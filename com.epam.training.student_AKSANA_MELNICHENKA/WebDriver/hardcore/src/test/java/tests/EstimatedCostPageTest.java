@@ -15,6 +15,7 @@ public class EstimatedCostPageTest extends AbstractTest {
         GoogleCloudPricingCalculatorPage pricingCalculatorPage = new GoogleCloudPricingCalculatorPage(driver);
 
         pricingCalculatorPage.switchFrame();
+        pricingCalculatorPage.activateSection();
         pricingCalculatorPage.fillFieldNumberInstances();
         pricingCalculatorPage.fillFieldOperatingSystem();
         pricingCalculatorPage.fillFieldVMClass();

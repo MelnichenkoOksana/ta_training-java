@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class PastebinStartPage {
     private static final String startPageURL = "https://pastebin.com";
 
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public PastebinStartPage(WebDriver driver) {
         this.driver = driver;
