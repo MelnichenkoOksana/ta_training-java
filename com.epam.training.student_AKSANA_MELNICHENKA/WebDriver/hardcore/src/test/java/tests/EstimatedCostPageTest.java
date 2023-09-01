@@ -1,36 +1,38 @@
 package tests;
 
+import model.VirtualMachine;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DropmailStartPage;
 import pages.EstimatedCostPage;
-import pages.GoogleCloudPricingCalculatorPage;
 import pages.GoogleCloudStartPage;
+import servise.VirtualMachineCreator;
+import util.TestListener;
 
+@Listeners({TestListener.class})
 public class EstimatedCostPageTest extends AbstractTest {
 
     public EstimatedCostPage openPage(String startPageURL) {
-        GoogleCloudStartPage googleCloudStartPage = new GoogleCloudStartPage(driver);
-        googleCloudStartPage.openPage(startPageURL);
-        googleCloudStartPage.pageSearch(CALCULATOR_NAME);
-        GoogleCloudPricingCalculatorPage pricingCalculatorPage = new GoogleCloudPricingCalculatorPage(driver);
+        VirtualMachine machine = VirtualMachineCreator.withCredentialsFromProperty();
+        return new GoogleCloudStartPage(driver)
+                .openPage(startPageURL)
+                .pageSearch(CALCULATOR_NAME)
+                .permissionUseCookie()
+                .activateSection()
+                .fillFieldNumberInstances(machine.getNumberInstances())
+                .fillFieldOperatingSystem(machine.getOperatingSystem())
+                .fillFieldVMClass(machine.getMachineClass())
+                .fillFieldSeries(machine.getFieldSeries())
+                .fillFieldMachineType(machine.getMachineType())
+                .choiceAddGPUs()
+                .fillGPUType(machine.getGpuType())
+                .fillNumberGPUs(machine.getNumberGPU())
+                .fillLocalSSD(machine.getLocalSSD())
+                .fillDatacenterLocation(machine.getDatacenterLocation())
+                .fillCommitUsage(machine.getCommitUsage())
+                .createEstimate();
 
-        pricingCalculatorPage.switchFrame();
-        pricingCalculatorPage.activateSection();
-        pricingCalculatorPage.fillFieldNumberInstances();
-        pricingCalculatorPage.fillFieldOperatingSystem();
-        pricingCalculatorPage.fillFieldVMClass();
-        pricingCalculatorPage.fillFieldSeries();
-        pricingCalculatorPage.fillFieldMachineType();
-        pricingCalculatorPage.choiceAddGPUs();
-        pricingCalculatorPage.fillGPUType();
-        pricingCalculatorPage.fillNumberOfGPUs();
-        pricingCalculatorPage.fillLocalSSD();
-        pricingCalculatorPage.fillDatacenterLocation();
-        pricingCalculatorPage.fillCommitUsage();
 
-        pricingCalculatorPage.createEstimate();
-
-        return new EstimatedCostPage(driver);
     }
 
     @Test
@@ -51,7 +53,6 @@ public class EstimatedCostPageTest extends AbstractTest {
         dropmailStartPage.switchFrame();
 
         assert dropmailStartPage.checkTotalEstimatedCost("USD 4,024.56");
-
     }
 
 }
