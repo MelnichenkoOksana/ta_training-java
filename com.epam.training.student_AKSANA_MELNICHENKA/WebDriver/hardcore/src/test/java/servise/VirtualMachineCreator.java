@@ -15,7 +15,6 @@ public class VirtualMachineCreator {
     public static final String TESTDATA_DATACENTER_LOCATION = "testdata.datacenter.location";
     public static final String TESTDATA_COMMIT_USAGE = "testdata.commit.usage";
 
-
     public static VirtualMachine withCredentialsFromProperty() {
         return new VirtualMachine(TestDataReader.getData(TESTDATA_NUMBER_INSTANCE),
                 TestDataReader.getData(TESTDATA_OPERATING_SYSTEM),

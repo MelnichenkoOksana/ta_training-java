@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 public class EstimatedCostPage extends AbstractPage {
 
     @FindBy(xpath = "//button[@title='Email Estimate']/span")
@@ -21,16 +20,16 @@ public class EstimatedCostPage extends AbstractPage {
         super(driver);
     }
 
-    public void pressButtonEmailEstimate() {
+    public void pressEmailEstimateButton() {
         buttonEmailEstimate.click();
     }
 
-    public void fillFieldEmail(String email) {
+    public void fillEmailField(String email) {
         fieldEmail.click();
         fieldEmail.sendKeys(email);
     }
 
-    public void pressButtonSendEmail() {
+    public void pressSendEmailButton() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
 
         executor.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", buttonSendEmail);

@@ -46,7 +46,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     WebElement fieldNumberOfGPUs;
 
     @FindBy(xpath = "//md-input-container/child::md-select[@ng-model='listingCtrl.computeServer.ssd']")
-    WebElement fieldLocalSSD;
+    WebElement fieldLocalSsd;
 
     @FindBy(xpath = "//md-input-container/child::md-select[@ng-model='listingCtrl.computeServer.location']")
     WebElement fieldDatacenterLocation;
@@ -70,7 +70,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public String localSSDXpath = "//md-option[@ng-repeat='item in listingCtrl.dynamicSsd.computeServer' and @value='%s']";
     public String commitUsageXpath = "//div[@class='md-select-menu-container md-active md-clickable']//md-option[@value='%s'][@class='md-ink-ripple']";
 
-
     public GoogleCloudPricingCalculatorPage(WebDriver driver) {
         super(driver);
     }
@@ -86,13 +85,13 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudPricingCalculatorPage fillFieldNumberInstances(String numberInstances) {
+    public GoogleCloudPricingCalculatorPage fillNumberInstancesField(String numberInstances) {
         fieldNumberInstances.click();
         fieldNumberInstances.sendKeys(numberInstances);
         return this;
     }
 
-    public GoogleCloudPricingCalculatorPage fillFieldOperatingSystem(String value) {
+    public GoogleCloudPricingCalculatorPage fillOperatingSystemField(String value) {
         fieldOperatingSystem.click();
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                 .until(ExpectedConditions.elementToBeClickable(labelOperatingSystem));
@@ -101,7 +100,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudPricingCalculatorPage fillFieldVMClass(String value) {
+    public GoogleCloudPricingCalculatorPage fillVMClassField(String value) {
         fieldVMClass.click();
         JavascriptExecutor executor = (JavascriptExecutor) driver;
 
@@ -112,7 +111,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudPricingCalculatorPage fillFieldSeries(String series) {
+    public GoogleCloudPricingCalculatorPage fillSeriesField(String series) {
         fieldSeries.click();
 
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
@@ -122,7 +121,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudPricingCalculatorPage fillFieldMachineType(String machineType) {
+    public GoogleCloudPricingCalculatorPage fillMachineTypeField(String machineType) {
         fieldMachineType.click();
 
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
@@ -131,7 +130,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         driver.findElement(By.xpath(constructXpath(baseCreateXpath, machineType))).click();
         return this;
     }
-
 
     public GoogleCloudPricingCalculatorPage choiceAddGPUs() {
         fieldAddSud.click();
@@ -156,7 +154,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage fillLocalSSD(String localSSD) {
-        fieldLocalSSD.click();
+        fieldLocalSsd.click();
 
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                 .until(ExpectedConditions.elementToBeClickable(labelLocalSSD2x375GB));
@@ -185,5 +183,4 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         buttonAddToEstimate.click();
         return new EstimatedCostPage(driver);
     }
-
 }

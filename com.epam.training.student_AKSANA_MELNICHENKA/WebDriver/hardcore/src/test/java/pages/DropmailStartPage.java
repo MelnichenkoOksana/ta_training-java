@@ -33,7 +33,6 @@ public class DropmailStartPage extends AbstractPage {
 
     public DropmailStartPage openPage(String startPageURL) {
         driver.get(startPageURL);
-
         return this;
     }
 

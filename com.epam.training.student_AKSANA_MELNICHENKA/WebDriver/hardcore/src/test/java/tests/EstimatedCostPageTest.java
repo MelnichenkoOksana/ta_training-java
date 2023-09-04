@@ -19,11 +19,11 @@ public class EstimatedCostPageTest extends AbstractTest {
                 .pageSearch(CALCULATOR_NAME)
                 .permissionUseCookie()
                 .activateSection()
-                .fillFieldNumberInstances(machine.getNumberInstances())
-                .fillFieldOperatingSystem(machine.getOperatingSystem())
-                .fillFieldVMClass(machine.getMachineClass())
-                .fillFieldSeries(machine.getFieldSeries())
-                .fillFieldMachineType(machine.getMachineType())
+                .fillNumberInstancesField(machine.getNumberInstances())
+                .fillOperatingSystemField(machine.getOperatingSystem())
+                .fillVMClassField(machine.getMachineClass())
+                .fillSeriesField(machine.getFieldSeries())
+                .fillMachineTypeField(machine.getMachineType())
                 .choiceAddGPUs()
                 .fillGPUType(machine.getGpuType())
                 .fillNumberGPUs(machine.getNumberGPU())
@@ -31,28 +31,25 @@ public class EstimatedCostPageTest extends AbstractTest {
                 .fillDatacenterLocation(machine.getDatacenterLocation())
                 .fillCommitUsage(machine.getCommitUsage())
                 .createEstimate();
-
-
     }
 
     @Test
     public void chekDataTest() {
-        EstimatedCostPage estimatedCostPage = openPage(GOOGLE_CLOUD_START_PAGE);
-        estimatedCostPage.pressButtonEmailEstimate();
+        EstimatedCostPage estimatedCostPage = openPage(GOOGLE_CLOUD_START_PAGE_URL);
+        estimatedCostPage.pressEmailEstimateButton();
         createNewTab();
         switchToTab(1);
         DropmailStartPage dropmailStartPage = new DropmailStartPage(driver);
-        dropmailStartPage.openPage(DROPMAIL_START_PAGE);
+        dropmailStartPage.openPage(DROPMAIL_START_PAGE_URL);
         String emailName = dropmailStartPage.getEmailName();
         switchToTab(0);
         estimatedCostPage.switchFrame();
-        estimatedCostPage.fillFieldEmail(emailName);
-        estimatedCostPage.pressButtonSendEmail();
+        estimatedCostPage.fillEmailField(emailName);
+        estimatedCostPage.pressSendEmailButton();
         switchToTab(1);
         dropmailStartPage.pressHTMLButton();
         dropmailStartPage.switchFrame();
 
         assert dropmailStartPage.checkTotalEstimatedCost("USD 4,024.56");
     }
-
 }

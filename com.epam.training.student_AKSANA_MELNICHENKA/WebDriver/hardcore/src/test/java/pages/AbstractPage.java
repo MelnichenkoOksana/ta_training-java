@@ -22,14 +22,13 @@ public abstract class AbstractPage {
 
     private final By labelAvailabilityFrame = By.xpath("//iframe[contains(@name,'goog_')]");
 
-
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public void switchFrame() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelAvailabilityFrame));
         driver.switchTo().frame(frame);
         driver.switchTo().frame(myFrame);
