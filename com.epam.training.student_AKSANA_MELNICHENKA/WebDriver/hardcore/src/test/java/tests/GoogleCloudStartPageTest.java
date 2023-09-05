@@ -1,15 +1,18 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.GoogleCloudPricingCalculatorPage;
-import pages.GoogleCloudStartPage;
 
+import pages.GoogleCloudStartPage;
+import util.TestListener;
+
+@Listeners({TestListener.class})
 public class GoogleCloudStartPageTest extends AbstractTest {
 
     @Test
     public void openCalculatorPageTest() {
-        GoogleCloudPricingCalculatorPage pricingCalculatorPage = new GoogleCloudStartPage(driver)
+        new GoogleCloudStartPage(driver)
                 .openPage(GOOGLE_CLOUD_START_PAGE_URL)
                 .pageSearch(CALCULATOR_NAME);
 
