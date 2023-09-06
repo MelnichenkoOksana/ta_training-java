@@ -65,11 +65,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.1.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng-smoke.xml</suiteXmlFile>
-                        <suiteXmlFile>testng-all.xml</suiteXmlFile>
+                        <File>testng-smoke.xml</File>
+                        <File>testng-all.xml</File>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
