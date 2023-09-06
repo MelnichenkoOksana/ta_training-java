@@ -164,11 +164,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
 
     public GoogleCloudPricingCalculatorPage fillDatacenterLocation(String datacenterLocation) {
         fieldDatacenterLocation.click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         fieldDatacenterLocation.sendKeys(datacenterLocation);
         fieldDatacenterLocation.click();
 
