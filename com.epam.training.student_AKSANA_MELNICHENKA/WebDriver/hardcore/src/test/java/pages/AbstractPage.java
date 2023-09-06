@@ -34,6 +34,11 @@ public abstract class AbstractPage {
         driver.switchTo().frame(myFrame);
     }
 
+    public WebElement waitElement(WebElement element) {
+        return new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+
     public String constructXpath(String mainXpath, String value) {
         return String.format(mainXpath, value);
     }

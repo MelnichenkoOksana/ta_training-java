@@ -50,6 +50,8 @@ public class EstimatedCostPageTest extends AbstractTest {
         dropmailStartPage.pressHTMLButton();
         dropmailStartPage.switchFrame();
 
-        assert dropmailStartPage.checkTotalEstimatedCost("USD 4,024.56");
+        String actualEstimatedCost = dropmailStartPage.getTotalEstimatedCost();
+
+        assert actualEstimatedCost.contains("USD 4,024.56");
     }
 }

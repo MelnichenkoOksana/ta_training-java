@@ -21,28 +21,21 @@ public class GoogleCloudStartPage extends AbstractPage {
     @FindBy(xpath = "//b[text() = 'Google Cloud Pricing Calculator']")
     private WebElement linkCalculator;
 
-    private final By labelSearchElement = By.xpath("//*[@name='q']");
-    private final By labelLinkCalculator = By.xpath("//b[text() = 'Google Cloud Pricing Calculator']");
-
     public GoogleCloudStartPage(WebDriver driver) {
         super(driver);
     }
 
     public GoogleCloudStartPage openPage(String startPageURL) {
         driver.get(startPageURL);
-        new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.visibilityOf(searchElement));
-      return this;
+        waitElement(searchElement);
+        return this;
     }
 
     public GoogleCloudPricingCalculatorPage pageSearch(String requestText) {
         searchElement.click();
         entryField.sendKeys(requestText);
         entryField.sendKeys(Keys.ENTER);
-        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelLinkCalculator));
-        linkCalculator.click();
-
+        waitElement(linkCalculator).click();
         return new GoogleCloudPricingCalculatorPage(driver);
     }
 

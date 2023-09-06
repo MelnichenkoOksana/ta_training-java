@@ -33,27 +33,27 @@ public class DropmailStartPage extends AbstractPage {
     }
 
     public String getEmailName() {
-        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.visibilityOf(emailName));
-        return emailName.getText();
+//        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+//                .until(ExpectedConditions.visibilityOf(emailName));
+        return waitElement(emailName).getText();
     }
 
     public void pressHTMLButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.visibilityOf(htmlButton));
-        htmlButton.click();
+//        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+//                .until(ExpectedConditions.visibilityOf(htmlButton));
+        waitElement(htmlButton).click();
     }
 
     public void switchFrame() {
-        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.visibilityOf(frame));
+//        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
+//                .until(ExpectedConditions.visibilityOf(frame));
+        waitElement(frame);
         driver.switchTo().frame(frame);
     }
 
 
-    public boolean checkTotalEstimatedCost(String expectedValue) {
-        String actualValue = value.getText();
-        return actualValue.contains(expectedValue);
+    public String getTotalEstimatedCost() {
+       return value.getText();
     }
 
 }
