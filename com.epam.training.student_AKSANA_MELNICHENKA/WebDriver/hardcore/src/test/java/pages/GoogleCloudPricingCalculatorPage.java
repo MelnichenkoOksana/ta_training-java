@@ -83,12 +83,18 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage fillNumberInstancesField(String numberInstances) {
         fieldNumberInstances.click();
         fieldNumberInstances.sendKeys(numberInstances);
+
+        System.out.println("Number of instances: " + fieldNumberInstances.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillOperatingSystemField(String value) {
         fieldOperatingSystem.click();
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, value)))).click();
+
+        System.out.println("Operating system: " + fieldOperatingSystem.getText());
+
         return this;
     }
 
@@ -96,42 +102,63 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         fieldVMClass.click();
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, value)))).click();
+
+        System.out.println("VM class: " + fieldVMClass.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillSeriesField(String series) {
         fieldSeries.click();
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, series)))).click();
+
+        System.out.println("Series: " + fieldSeries.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillMachineTypeField(String machineType) {
         fieldMachineType.click();
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, machineType)))).click();
+
+        System.out.println("Machine type: " + fieldMachineType.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage choiceAddGPUs() {
         fieldAddSud.click();
         fieldAddGPUs.click();
+
+        System.out.println("Add GPUs: " + fieldAddGPUs.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillGPUType(String gpuType) {
         fieldGPUType.click();
         driver.findElement(By.xpath(constructXpath(baseCreateXpath, gpuType))).click();
+
+        System.out.println("GPU type: " + fieldGPUType.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillNumberGPUs(String numberGPU) {
         fieldNumberOfGPUs.click();
         waitElement(driver.findElement(By.xpath(constructXpath(numberGPUXpath, numberGPU)))).click();
+
+        System.out.println("Number of GPUs: " + fieldNumberOfGPUs.getText());
+
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillLocalSSD(String localSSD) {
         fieldLocalSsd.click();
         waitElement(driver.findElement(By.xpath(constructXpath(localSSDXpath, localSSD)))).click();
+
+        System.out.println("Local SSD: " + fieldLocalSsd.getText());
+
         return this;
     }
 
@@ -139,6 +166,9 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         fieldDatacenterLocation.click();
         fieldDatacenterLocation.sendKeys(datacenterLocation);
         fieldDatacenterLocation.click();
+
+        System.out.println("Datacenter location: " + fieldDatacenterLocation.getText());
+
         return this;
     }
 
@@ -146,6 +176,9 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         fieldCommitUsage.click();
         waitElement(commitUsageOneYear);
         driver.findElement(By.xpath(constructXpath(commitUsageXpath, commitUsage))).click();
+
+        System.out.println("Commit usage: " + fieldCommitUsage.getText());
+
         return this;
     }
 

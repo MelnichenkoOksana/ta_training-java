@@ -1,5 +1,7 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +15,8 @@ import java.time.Duration;
 public abstract class AbstractPage {
     protected WebDriver driver;
     protected final int WAIT_TIMEOUT_SECONDS = 10;
+
+    private Logger log = LogManager.getRootLogger();
 
     @FindBy(xpath = "//iframe[contains(@name,'goog_')]")
     private WebElement frame;
