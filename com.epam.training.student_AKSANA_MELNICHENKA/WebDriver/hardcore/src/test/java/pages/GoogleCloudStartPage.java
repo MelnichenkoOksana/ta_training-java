@@ -31,7 +31,7 @@ public class GoogleCloudStartPage extends AbstractPage {
     public GoogleCloudStartPage openPage(String startPageURL) {
         driver.get(startPageURL);
         new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelSearchElement));
+                .until(ExpectedConditions.visibilityOf(searchElement));
       return this;
     }
 

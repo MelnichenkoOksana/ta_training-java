@@ -23,10 +23,6 @@ public class DropmailStartPage extends AbstractPage {
     @FindBy(xpath = "//td//h2")
     private WebElement value;
 
-    private final By labelEmailName = By.xpath("//span[@class='address']");
-    private final By labelHTMLButton = By.xpath("//*[@class = 'bi-image']");
-    private final By labelFrame = By.xpath("//iframe[@class = 'mail-clean-html']");
-
     public DropmailStartPage(WebDriver driver) {
         super(driver);
     }
@@ -38,21 +34,22 @@ public class DropmailStartPage extends AbstractPage {
 
     public String getEmailName() {
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelEmailName));
+                .until(ExpectedConditions.visibilityOf(emailName));
         return emailName.getText();
     }
 
     public void pressHTMLButton() {
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelHTMLButton));
+                .until(ExpectedConditions.visibilityOf(htmlButton));
         htmlButton.click();
     }
 
     public void switchFrame() {
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS))
-                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(labelFrame));
+                .until(ExpectedConditions.visibilityOf(frame));
         driver.switchTo().frame(frame);
     }
+
 
     public boolean checkTotalEstimatedCost(String expectedValue) {
         String actualValue = value.getText();
