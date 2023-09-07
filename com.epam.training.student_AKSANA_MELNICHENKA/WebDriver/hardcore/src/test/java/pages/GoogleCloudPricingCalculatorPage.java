@@ -64,7 +64,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     private String numberGPUXpath = "//md-option[@ng-disabled='item.value != 0 && item.value < listingCtrl.minGPU' and @value='%s']";
     private String localSSDXpath = "//md-option[@ng-repeat='item in listingCtrl.dynamicSsd.computeServer' and @value='%s']";
     private String commitUsageXpath = "//div[@class='md-select-menu-container md-active md-clickable']//md-option[@value='%s'][@class='md-ink-ripple']";
-
+    private String datacenterLocationXpath = "//md-option[@value='%s'][@ng-repeat='item in listingCtrl.fullRegionList | filter:listingCtrl.inputRegionText.computeServer']/div";
     public GoogleCloudPricingCalculatorPage(WebDriver driver) {
         super(driver);
     }
@@ -163,16 +163,9 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage fillDatacenterLocation(String datacenterLocation) {
-        WebElement element = driver.findElement(By.xpath("//md-select[@ng-model='listingCtrl.computeServer.location']"));
-        element.click();
-        WebElement element1 = driver.findElement(By.xpath("//*[@id='select_option_262']/div"));
-        waitElement(element1);
-        element1.click();
+        fieldDatacenterLocation.click();
+        waitElement(driver.findElement(By.xpath(constructXpath(datacenterLocationXpath, datacenterLocation)))).click();
 
-//        fieldDatacenterLocation.click();
-//        fieldDatacenterLocation.sendKeys(datacenterLocation);
-//        fieldDatacenterLocation.click();
-//
         System.out.println("Datacenter location: " + fieldDatacenterLocation.getText());
 
         return this;
