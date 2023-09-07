@@ -163,10 +163,16 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudPricingCalculatorPage fillDatacenterLocation(String datacenterLocation) {
-        fieldDatacenterLocation.click();
-        fieldDatacenterLocation.sendKeys(datacenterLocation);
-        fieldDatacenterLocation.click();
+        WebElement element = driver.findElement(By.xpath("//md-select[@ng-model='listingCtrl.computeServer.location']"));
+        element.click();
+        WebElement element1 = driver.findElement(By.xpath("//*[@id='select_option_262']/div"));
+        waitElement(element1);
+        element1.click();
 
+//        fieldDatacenterLocation.click();
+//        fieldDatacenterLocation.sendKeys(datacenterLocation);
+//        fieldDatacenterLocation.click();
+//
         System.out.println("Datacenter location: " + fieldDatacenterLocation.getText());
 
         return this;
