@@ -5,10 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class GoogleCloudPricingCalculatorPage extends AbstractPage {
 
@@ -65,6 +61,7 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     private String localSSDXpath = "//md-option[@ng-repeat='item in listingCtrl.dynamicSsd.computeServer' and @value='%s']";
     private String commitUsageXpath = "//div[@class='md-select-menu-container md-active md-clickable']//md-option[@value='%s'][@class='md-ink-ripple']";
     private String datacenterLocationXpath = "//md-option[@value='%s'][@ng-repeat='item in listingCtrl.fullRegionList | filter:listingCtrl.inputRegionText.computeServer']/div";
+
     public GoogleCloudPricingCalculatorPage(WebDriver driver) {
         super(driver);
     }
@@ -83,18 +80,12 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
     public GoogleCloudPricingCalculatorPage fillNumberInstancesField(String numberInstances) {
         fieldNumberInstances.click();
         fieldNumberInstances.sendKeys(numberInstances);
-
-        System.out.println("Number of instances: " + fieldNumberInstances.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillOperatingSystemField(String value) {
         fieldOperatingSystem.click();
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, value)))).click();
-
-        System.out.println("Operating system: " + fieldOperatingSystem.getText());
-
         return this;
     }
 
@@ -102,72 +93,48 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         fieldVMClass.click();
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, value)))).click();
-
-        System.out.println("VM class: " + fieldVMClass.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillSeriesField(String series) {
         fieldSeries.click();
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, series)))).click();
-
-        System.out.println("Series: " + fieldSeries.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillMachineTypeField(String machineType) {
         fieldMachineType.click();
         waitElement(driver.findElement(By.xpath(constructXpath(baseCreateXpath, machineType)))).click();
-
-        System.out.println("Machine type: " + fieldMachineType.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage choiceAddGPUs() {
         fieldAddSud.click();
         fieldAddGPUs.click();
-
-        System.out.println("Add GPUs: " + fieldAddGPUs.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillGPUType(String gpuType) {
         fieldGPUType.click();
         driver.findElement(By.xpath(constructXpath(baseCreateXpath, gpuType))).click();
-
-        System.out.println("GPU type: " + fieldGPUType.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillNumberGPUs(String numberGPU) {
         fieldNumberOfGPUs.click();
         waitElement(driver.findElement(By.xpath(constructXpath(numberGPUXpath, numberGPU)))).click();
-
-        System.out.println("Number of GPUs: " + fieldNumberOfGPUs.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillLocalSSD(String localSSD) {
         fieldLocalSsd.click();
         waitElement(driver.findElement(By.xpath(constructXpath(localSSDXpath, localSSD)))).click();
-
-        System.out.println("Local SSD: " + fieldLocalSsd.getText());
-
         return this;
     }
 
     public GoogleCloudPricingCalculatorPage fillDatacenterLocation(String datacenterLocation) {
         fieldDatacenterLocation.click();
         waitElement(driver.findElement(By.xpath(constructXpath(datacenterLocationXpath, datacenterLocation)))).click();
-
-        System.out.println("Datacenter location: " + fieldDatacenterLocation.getText());
-
         return this;
     }
 
@@ -175,9 +142,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPage {
         fieldCommitUsage.click();
         waitElement(commitUsageOneYear);
         driver.findElement(By.xpath(constructXpath(commitUsageXpath, commitUsage))).click();
-
-        System.out.println("Commit usage: " + fieldCommitUsage.getText());
-
         return this;
     }
 
